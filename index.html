@@ -170,9 +170,8 @@
       </div>
     </div>
 
-    <!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- //////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <!-- J A V A S C R I P T ------------------------------------------------------------------------------->
+    <!-- //////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- J A V A S C R I P T ------------------------------------------------------------------->
     <script>
       "use strict";
 
@@ -194,24 +193,28 @@
       // =====================================================================
       let i = 0;
 
-      const colorChange = function () {
-        const colorInterval = setInterval(function () {
-          circlesAll.forEach((circle) => {
-            if (i === colors.length - 1) {
-              i = 0;
-            } else {
-              i++;
-            }
-            circle.style.backgroundColor = colors[i];
-          });
-
-          // incrementing for next round
+      const colorInt = function () {
+        circlesAll.forEach((circle) => {
           if (i === colors.length - 1) {
             i = 0;
           } else {
             i++;
           }
-        }, 3000);
+          circle.style.backgroundColor = colors[i];
+        });
+
+        // incrementing for next round
+        if (i === colors.length - 1) {
+          i = 0;
+        } else {
+          i++;
+        }
+      };
+
+      const colorChange = function () {
+        setTimeout(colorInt, 0);
+
+        const colorInterval = setInterval(colorInt, 3000);
 
         // add event listner to stop btn ---------------------------------------
         stopBtn.addEventListener("click", function () {
